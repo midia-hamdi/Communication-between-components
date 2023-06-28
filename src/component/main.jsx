@@ -1,38 +1,35 @@
 import React, { Component } from 'react'
 
-export default class main extends Component {
+export default class Main extends Component {
+
+    state = {
+        boxes: [
+            {id: 1, title: 'Box 1'},
+            {id: 2, title: 'Box 2'},
+            {id: 3, title: 'Box 3'},
+            {id: 4, title: 'Box 4'},
+        ]
+    }
   render() {
+
+    const toggle = this.state.boxes.map(box => {
+        return (
+            <div className="toggle">
+                <span>{box.title}</span>
+                <label className="toggle-control">
+                    <input type="checkbox" />
+                    <span className="control"></span>
+                </label>
+            </div>
+
+        )
+    });
+    
     return (
-        <React.Fragment>
+        //it is sortcut <> </> for react.fragment
+        <React.Fragment> 
             <aside>
-                <div className="toggle">
-                    <span>Box 1</span>
-                    <label className="toggle-control">
-                        <input type="checkbox" />
-                        <span className="control"></span>
-                    </label>
-                </div>
-                <div className="toggle">
-                    <span>Box 2</span>
-                    <label className="toggle-control">
-                        <input type="checkbox" checked="checked" />
-                        <span className="control"></span>
-                    </label>
-                </div>
-                <div className="toggle">
-                    <span>Box 3</span>
-                    <label className="toggle-control">
-                        <input type="checkbox" />
-                        <span className="control"></span>
-                    </label>
-                </div>
-                <div className="toggle">
-                    <span>Box 4</span>
-                    <label className="toggle-control">
-                        <input type="checkbox" checked="checked" />
-                        <span className="control"></span>
-                    </label>
-                </div>
+               {toggle}
             </aside>
             <div className="box-wrapper">
                 <div className="box">Box 1</div>
