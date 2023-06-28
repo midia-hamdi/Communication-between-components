@@ -8,7 +8,12 @@ export default class Main extends Component {
             {id: 2, title: 'Box 2'},
             {id: 3, title: 'Box 3'},
             {id: 4, title: 'Box 4'},
-        ]
+        ],
+        activrBoxes: [1, 2, 3, 4],
+    }
+
+    handelToggleBtn(id){
+        console.log(id);
     }
   render() {
 
@@ -17,14 +22,18 @@ export default class Main extends Component {
             <div className="toggle">
                 <span>{box.title}</span>
                 <label className="toggle-control">
-                    <input type="checkbox" />
-                    <span className="control"></span>
+                    <input type="checkbox" checked={this.state.activrBoxes.includes(box.id)} />
+                    <span className="control" onClick={(e) => this.handelToggleBtn(box.id)}></span>
                 </label>
             </div>
         )
     })
 
-    const boxes = this.state.boxes.map(box => <div className="box">{box.title}</div>)
+    const boxes = this.state.boxes.map(box => {
+        if (this.state.activrBoxes.includes(box.id)) {
+            return <div className="box">{box.title}</div>
+        }
+    })
     
     return (
         //it is sortcut <> </> for react.fragment
