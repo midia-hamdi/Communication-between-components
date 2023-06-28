@@ -9,11 +9,24 @@ export default class Main extends Component {
             {id: 3, title: 'Box 3'},
             {id: 4, title: 'Box 4'},
         ],
-        activrBoxes: [1, 2, 3, 4],
+        activeBoxes: [1, 2, 3, 4],
     }
 
     handelToggleBtn(id){
-        console.log(id);
+        const activeBoxes = [...this.state.activeBoxes];
+
+        if(activeBoxes.includes(id)){
+            activeBoxes.splice(activeBoxes.indexOf(id), 1)
+        } else {
+            activeBoxes.push(id);
+        }
+
+        this.setState(state => {
+            return {
+                ...state,
+                activeBoxes
+            }
+        })
     }
   render() {
 
@@ -22,7 +35,7 @@ export default class Main extends Component {
             <div className="toggle">
                 <span>{box.title}</span>
                 <label className="toggle-control">
-                    <input type="checkbox" checked={this.state.activrBoxes.includes(box.id)} />
+                    <input type="checkbox" checked={this.state.activeBoxes.includes(box.id)} />
                     <span className="control" onClick={(e) => this.handelToggleBtn(box.id)}></span>
                 </label>
             </div>
@@ -30,7 +43,7 @@ export default class Main extends Component {
     })
 
     const boxes = this.state.boxes.map(box => {
-        if (this.state.activrBoxes.includes(box.id)) {
+        if (this.state.activeBoxes.includes(box.id)) {
             return <div className="box">{box.title}</div>
         }
     })
