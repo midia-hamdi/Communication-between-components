@@ -21,9 +21,10 @@ export default class Main extends Component {
                     <span className="control"></span>
                 </label>
             </div>
-
         )
-    });
+    })
+
+    const boxes = this.state.boxes.map(box => <div className="box">{box.title}</div>)
     
     return (
         //it is sortcut <> </> for react.fragment
@@ -32,10 +33,7 @@ export default class Main extends Component {
                {toggle}
             </aside>
             <div className="box-wrapper">
-                <div className="box">Box 1</div>
-                <div className="box">Box 2</div>
-                <div className="box">Box 3</div>
-                <div className="box">Box 4</div>
+                {boxes}
             </div>
         </React.Fragment>
     )
